@@ -280,7 +280,8 @@ EAS_RESULT SMF_Event (S_EAS_DATA *pEASData, EAS_VOID_PTR pInstData, EAS_INT pars
     pSMFData = (S_SMF_DATA*) pInstData;
     if (pSMFData->state >= EAS_STATE_OPEN)
         return EAS_SUCCESS;
-
+    if (pSMFData->nextStream == NULL)
+        return EAS_STATE_ERROR;
     /* get current ticks */
     ticks = pSMFData->nextStream->ticks;
 
